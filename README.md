@@ -145,8 +145,45 @@ grunt.initConfig({
 
 #### options.exclude
 Type: `Array`
+Syntax: `['PackageNameA/*'<, 'PackageNameB/*', ...>] `
 
 The specific dependencies packages to exclude from the compilation.
+For example, adding `exclude: ['Core/*']` in the Gruntfile options would exclude all Core dependencies from output file.
+
+```js
+grunt.initConfig({
+  packager: {
+    options: {
+      name: {
+        Core: 'js/mootools-core',
+        More: 'js/mootools-more'
+      }
+    },
+
+    all: {
+      src: [
+        'js/mootools-core/Source/**/*.js',
+        'js/mootools-more/Source/**/*.js'
+      ],
+      dest: 'dist/mootools.js'
+    },
+
+    exclude_dependencies: {
+      options: {
+        exclude: ['Core/*']
+      },
+      src: [
+        'js/mootools-core/Source/**/*.js',
+        'js/mootools-more/Source/**/*.js'
+      ],
+      dest: 'dist/more.js'
+    }
+
+  }
+
+});
+```
+
 
 ### Other Usage Examples
 
